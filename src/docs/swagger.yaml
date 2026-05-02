@@ -8,6 +8,7 @@ servers:
 tags:
   - name: Health
   - name: Auth
+  - name: Pets
 paths:
   /health:
     get:
@@ -80,6 +81,37 @@ paths:
           description: Login realizado com sucesso
         "401":
           description: Credenciais inválidas
+  /pets:
+    post:
+      tags: [Pets]
+      summary: Cadastra um pet para o usuário autenticado
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, species]
+              properties:
+                name:
+                  type: string
+                  example: Bolt
+                species:
+                  type: string
+                  example: cachorro
+                age:
+                  type: number
+                  minimum: 0
+                  example: 4
+      responses:
+        "201":
+          description: Pet criado com sucesso
+        "400":
+          description: Dados inválidos
+        "401":
+          description: Não autenticado
 components:
   securitySchemes:
     bearerAuth:
