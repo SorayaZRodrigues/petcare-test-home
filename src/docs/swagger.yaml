@@ -8,6 +8,7 @@ servers:
 tags:
   - name: Health
   - name: Auth
+  - name: Pets
 paths:
   /health:
     get:
@@ -80,6 +81,27 @@ paths:
           description: Login realizado com sucesso
         "401":
           description: Credenciais inválidas
+  /pets/{petId}:
+    get:
+      tags: [Pets]
+      summary: Consulta os dados de um pet do tutor autenticado
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: petId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Pet encontrado
+        "403":
+          description: Pet pertence a outro tutor
+        "404":
+          description: Pet não encontrado
+        "401":
+          description: Não autenticado
 components:
   securitySchemes:
     bearerAuth:
