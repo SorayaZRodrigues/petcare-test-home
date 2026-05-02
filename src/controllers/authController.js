@@ -30,7 +30,7 @@ const login = async (req, res) => {
     const result = await authService.login({ email, password });
     return res.status(200).json(result);
   } catch (error) {
-    if (error.message === "Invalid credentials") {
+    if (error.message === authService.INVALID_CREDENTIALS_ERROR) {
       return res.status(401).json({ message: error.message });
     }
 

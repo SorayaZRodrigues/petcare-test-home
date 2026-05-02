@@ -55,7 +55,7 @@ paths:
           description: Usuário criado
         "409":
           description: Usuário já existe
-  /login:
+  /auth/login:
     post:
       tags: [Auth]
       summary: Autentica um usuário

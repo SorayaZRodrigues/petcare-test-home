@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
+const INVALID_CREDENTIALS_ERROR = "Invalid credentials";
 
 const generateToken = (userId) => {
   const jwtSecret = process.env.JWT_SECRET;
@@ -43,13 +44,17 @@ const login = async ({ email, password }) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    throw new Error("Invalid credentials");
+    throw new Error(INVALID_CREDENTIALS_ERROR);
+  }
+
+  if (!user.isActive) {
+    throw new Error(INVALID_CREDENTIALS_ERROR);
   }
 
   const passwordMatches = await bcrypt.compare(password, user.password);
 
   if (!passwordMatches) {
-    throw new Error("Invalid credentials");
+    throw new Error(INVALID_CREDENTIALS_ERROR);
   }
 
   return {
@@ -65,4 +70,5 @@ const login = async ({ email, password }) => {
 module.exports = {
   register,
   login,
+  INVALID_CREDENTIALS_ERROR,
 };
