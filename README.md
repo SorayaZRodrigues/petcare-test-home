@@ -48,13 +48,13 @@ src/
 npm install
 ```
 
-2. Crie seu arquivo de ambiente:
+1. Crie seu arquivo de ambiente:
 
 ```bash
 cp .env.example .env
 ```
 
-3. Atualize as variáveis de ambiente no `.env`:
+1. Atualize as variáveis de ambiente no `.env`:
 
 - `PORT`
 - `BASE_URL`
@@ -89,3 +89,4 @@ Authorization: Bearer <seu_token_jwt>
 - Adicionar testes automatizados (unitários e integração).
 - Configurar pipeline de CI com GitHub Actions.
 - Ajustar estratégia de deploy para Vercel.
+
