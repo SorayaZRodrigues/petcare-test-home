@@ -72,7 +72,7 @@ cp .env.example .env
 - `GET /` - status básico da API.
 - `GET /api/health` - health check.
 - `POST /api/register` - cadastro de usuário.
-- `POST /api/login` - autenticação e geração de JWT.
+- `POST /api/auth/login` - autenticação e geração de JWT.
 - `GET /api/protected` - rota protegida por JWT.
 - `GET /api-docs` - documentação Swagger.
 
